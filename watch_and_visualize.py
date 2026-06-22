@@ -13,11 +13,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
-# --- EDIT THESE TO MATCH YOUR SQL SERVER SETUP ---
-# Matches: Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;...
+# --- SQL SERVER SETUP ---
 SERVER = "(localdb)\\MSSQLLocalDB"
 DATABASE = "SalesDB"
-DRIVER = "{ODBC Driver 17 for SQL Server}"   # change to 18 if that's what you have
+DRIVER = "{ODBC Driver 17 for SQL Server}"
 
 CONN_STR = (
     f"DRIVER={DRIVER};"
@@ -28,7 +27,12 @@ CONN_STR = (
 
 POLL_INTERVAL_MS = 3000  # how often to check the DB, in milliseconds
 
-# Spend thresholds for categorization (adjust to fit your own data)
+# Spend thresholds for categorization
+"""
+customers having spend >= $500 are "High"
+customers having spend >= $200 but < $500 are "Medium"
+customers having spend < $200 are "Low"
+"""
 HIGH_THRESHOLD = 500
 MEDIUM_THRESHOLD = 200
 

@@ -9,11 +9,10 @@ import pyodbc
 import random
 import time
 
-# --- EDIT THESE TO MATCH YOUR SQL SERVER SETUP ---
-# Matches: Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;...
+# --- SQL SERVER SETUP ---
 SERVER = "(localdb)\\MSSQLLocalDB"
 DATABASE = "SalesDB"
-DRIVER = "{ODBC Driver 17 for SQL Server}"   # change to 18 if that's what you have
+DRIVER = "{ODBC Driver 17 for SQL Server}" 
 
 CONN_STR = (
     f"DRIVER={DRIVER};"
@@ -26,6 +25,10 @@ CUSTOMER_IDS = list(range(1, 16))   # pretend we have 15 customers
 
 
 def insert_random_order(cursor):
+    """
+    inserts a random order into the orders table with a random customer_id and amount
+    to simulate new sales coming in. The amount is a random float between $10 and $250.
+    """
     customer_id = random.choice(CUSTOMER_IDS)
     amount = round(random.uniform(10, 250), 2)
     cursor.execute(
@@ -36,6 +39,10 @@ def insert_random_order(cursor):
 
 
 def main():
+    """
+    entry point of the script. Connects to the database and 
+    continuously inserts random orders every 2-5 seconds until interrupted.
+    """
     conn = pyodbc.connect(CONN_STR, autocommit=True)
     cursor = conn.cursor()
     print("Connected. Inserting a new random order every 2-5 seconds. Ctrl+C to stop.")
