@@ -20,7 +20,7 @@ order every 2–5s          Calculates total spend/customer (Transform)
                           Redraws bar chart                   (Load)
 ```
 
-**Change detection:** tracks the highest `order_id` seen — each poll fetches only rows newer than that. No triggers or CDC needed.
+**Change detection:** tracks the highest `order_id` seen — each poll fetches only rows newer than that.
 
 **Spend thresholds:**
 | Category | Total Spend |
@@ -65,10 +65,9 @@ The chart refreshes automatically as new orders land.
 ## Project Structure
 
 ```
-├── setup_database.sql       # Create DB and orders table
-├── insert_orders.py         # Simulates incoming orders
-├── watch_and_visualize.py   # ETL watcher + live chart
+├── setup_database.sql
+├── insert_orders.py
+├── watch_and_visualize.py 
 ├── requirements.txt
 └── images/
-    └── screenshot.png       # Add your screenshot here
 ```
