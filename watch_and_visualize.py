@@ -28,10 +28,15 @@ import matplotlib.animation as animation
 import pandas as pd
 import pyodbc
 
-# ── Connection ────────────────────────────────────────────────────────────────
-SERVER   = "(localdb)\\MSSQLLocalDB"
-DATABASE = "SalesDB"
-DRIVER   = "{ODBC Driver 17 for SQL Server}"  # change to 18 if needed
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# --- SQL SERVER SETUP ---
+SERVER = os.environ.get("SERVER")
+DATABASE = os.environ.get("DATABASE")
+DRIVER = os.environ.get("DRIVER")
 
 CONN_STR = (
     f"DRIVER={DRIVER};"
