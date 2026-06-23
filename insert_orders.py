@@ -8,11 +8,15 @@ Run this in one terminal while watch_and_visualize.py runs in another.
 import pyodbc
 import random
 import time
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # --- SQL SERVER SETUP ---
-SERVER = "(localdb)\\MSSQLLocalDB"
-DATABASE = "SalesDB"
-DRIVER = "{ODBC Driver 17 for SQL Server}" 
+SERVER = os.environ.get("SERVER")
+DATABASE = os.environ.get("DATABASE")
+DRIVER = os.environ.get("DRIVER" )
 
 CONN_STR = (
     f"DRIVER={DRIVER};"
